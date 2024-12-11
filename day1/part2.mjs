@@ -2,8 +2,8 @@ import fs from "node:fs";
 
 try {
   // reading file
-  // let data = fs.readFileSync("testInput.txt", "utf8");
-  let data = fs.readFileSync("input.txt", "utf8");
+  // let data = fs.readFileSync("day1-test-input.txt", "utf8");
+  let data = fs.readFileSync("day1-input.txt", "utf8");
   data = data.replaceAll("\r", "");
   const dataArray = data.split("\n");
 
@@ -14,15 +14,15 @@ try {
   dataArray.forEach((pairString) => {
     // seperator: 3 spaces, not 2!
     const [a, b] = pairString.split("   ");
-    // converting strings into numbers, so they can be sorted
-    // as numbers, not strings (hello JS!)
     arrayA.push(a);
     arrayB.push(b);
   });
 
-  const foundAmounts = arrayA.map((a) => {
-    const foundAinB = arrayB.filter((el) => el === a);
-    return a * foundAinB.length;
+  // counting occurances of a in arrayB
+  const foundAmounts = arrayA.map((id) => {
+    const foundInB = arrayB.filter((el) => el === id);
+    // multiplying by ID (as per exercise description)
+    return id * foundInB.length;
   });
 
   const similarityScore = foundAmounts.reduce(
